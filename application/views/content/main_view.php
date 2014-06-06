@@ -14,7 +14,17 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-sm-4">
-									<input type="text" class="form-control" name="kW" placeholder="Average monthy kWH">
+									<input type="text" class="form-control" name="kW" placeholder="Average kWH/month">
+								</div>
+								<div class="kwh-info">
+									<div class="hidden-xs">
+											<div class="left">
+												<small>Look for it at the right side of your electric bill, next to the graph.</small>
+											</div>
+											<div class="right">
+												<img src="<?=base_url();?>/assets/img/meralco.png" class="img-responsive" alt="Meralco Bill kWh">
+											</div>
+									</div>
 								</div>
 							</div>
 
@@ -69,13 +79,19 @@
 	<div class="container">
 		<?php if(!empty($pData)){ ?>
 		<div class="col-md-12">
-			<canvas id="myChart1" width="1024" height="640"></canvas>
+			<div class="chart">
+				<canvas id="myChart1" width="1000" height="300"></canvas>
+			</div>
 		</div>
 		<div class="col-md-12">
-			<canvas id="myChart2" width="600" height="200"></canvas>
+			<div class="chart">
+				<canvas id="myChart2" width="1000" height="300"></canvas>
+			</div>
 		</div>
 		<div class="col-md-12">
-			<canvas id="myChart3" width="600" height="400"></canvas>
+			<div class="chart">
+				<canvas id="myChart3" width="1000" height="300"></canvas>
+			</div>
 		</div>
 		<?php } ?>
 	</div>
