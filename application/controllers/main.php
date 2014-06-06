@@ -24,9 +24,15 @@
 			
 			// Data variables
 			$data['pData'] = $_POST;
+			
+			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 			$data['Emission'] = $kwH*365;
+			
+			
+			// With Solar Panel Bill
+			$data['monthlyBill'] = $this->getQuote($budget);
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -34,19 +40,26 @@
 			$this->load->view('footer.php',$data);
 		}
 		
-		
 		//===========================
 		// Get Total Computations (Solar)
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		//===========================
-		public function getSolarQuote(){
-			
+		public function getSolarQuote($kwH=NULL,$budget=NULL){
+			$budget = 100000;
+			$solarkWh = $this->energySolar($budget);
+			$monthlyBill = $this->getBillQuote($kwH);
+			echo $monthlyBill - ( $solarkWh * 1885.325);
 		}
 		
 		public function energySolar($budget=NULL){
 			$kW = $budget/100000;	// daily kW produces by solar panel
+			$kWh = $kW * 4.5;	// Daily kWh consumble energy produces by solar panel
 			
-			
+			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
+		}
+		
+		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
+			//$emission = 
 		}
 		
 		//===========================
