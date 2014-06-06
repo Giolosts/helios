@@ -12,6 +12,5 @@ This web app lets users project a solar conversion in their home.
 - [ ] Add computations for Windmill conversion
 
 Made with PHP/CI & HTML5, CSS, JS
-
-Charts are generated using framework Chart.js (http://chart.js)
+Charts are generated using framework Chart.js (http://chartjs.org)
 
