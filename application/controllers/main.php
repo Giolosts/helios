@@ -13,6 +13,8 @@
 		{
 			// Data Variables
 			$data['pData'] = '';
+			$data['kW'] = '';
+			$data['Amt'] = '';
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -24,6 +26,8 @@
 			
 			// Data variables
 			$data['pData'] = $_POST;
+			$data['kW'] = $_POST['kW'];
+			$data['Amt'] = $_POST['Amt'];
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 			$data['Emission'] = $kwH*365;
