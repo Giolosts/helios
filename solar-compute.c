@@ -30,7 +30,7 @@ float compute(float kwh) {
 	}
 	
 	category[c] += 24.88; // fixed prices
-	c++;
+	c++;	
 	
 	// subsidies
 	for(i = 0; i < 2; i++) {
