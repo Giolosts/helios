@@ -39,15 +39,22 @@
 		// Get Total Computations (Solar)
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		//===========================
-		//public function getSolarQuote(){
+		public function getSolarQuote(){
 			
-		//}
+		}
+		
+		public function energySolar($budget=NULL){
+			$kW = $budget/100000;	// daily kW produces by solar panel
+			
+			
+		}
+		
 		//===========================
 		// General Total Computation (Meralco)
 		// return avarage energy consumption from distributor
 		//===========================
-		public function getQuote($kwH=NULL){
-			$kwH = 100; // Test Data
+		public function getBillQuote($kwH=NULL){
+			//$kwH = 100; // Test Data
 			$govTax = 241.28;	// Declared Gov Tax Rate Value
 	
 			$genTotal = $this->generation($kwH);	// Total Generation Charge
@@ -58,7 +65,7 @@
 			$uniTotal = $this->universal($kwH);		// Total Universal Charge
 			
 			$genAv = $genTotal+$transTotal+$sysTotal+$disTotal+$subTotal+$uniTotal+$govTax; // Average Energy Consumption Cost
-			echo $genAv;
+			return $genAv;
 		}
 		
 		
