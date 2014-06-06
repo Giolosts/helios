@@ -96,9 +96,6 @@ int main() {
 	
 	emmisions -= (kwh - generated_kwh) * 365;
 	printf("\nYour new  CO2 emmisions is %.0f CO2 pounds per year", emmisions);
-	//monthly_saved = monthly_bill - generated_bill;
-	//printf("\n\nYou save PHP%.2f from your monthly bill, bringing your "
-	//		"monthly total bill to: %.2f", generated_bill, monthly_saved);
 	
 	return 0;
 }
