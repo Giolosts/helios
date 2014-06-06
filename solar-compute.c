@@ -13,14 +13,17 @@ float compute(float kwh) {
 		category[c] += kwh * price[p];
 		p++; //next price
 	} 
+	printf("\nGeneration: %.2f", category[c]);
 	c++; // next categ
 	
 	// transmission
 	category[c] = kwh * price[p];
+	printf("\nTransmission: %.2f", category[c]);
 	p++; c++;
 	
 	// system loss
 	category[c] = kwh * price[p];
+	printf("\nSystem Loss: %.2f", category[c]);
 	p++; c++;
 	
 	// distribution
@@ -30,6 +33,7 @@ float compute(float kwh) {
 	}
 	
 	category[c] += 24.88; // fixed prices
+	printf("\nDistribution: %.2f", category[c]);
 	c++;	
 	
 	// subsidies
@@ -37,20 +41,22 @@ float compute(float kwh) {
 		category[c] += kwh * price[p];
 		p++;
 	}
+	printf("\nSubsidies: %.2f", category[c]);
 	c++;
 	
 	// universal charges
 	for(i = 0; i < 3; i++) {
-		category[c] =+ kwh * price[p];
+		category[c] += kwh * price[p];
 		p++;
 	}
+	printf("\nUniversal Charges: %.2f", category[c]);
 	c++;
 	
 	// subtotal
 	for(i = 0; i < c; i++) {
 		total += category[i];
 	}
-	
+	printf("\nSubtotal (no taxes): %.2f", total);
 	// government taxes
 	total += 241.28;
 	

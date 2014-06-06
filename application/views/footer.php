@@ -16,7 +16,6 @@
 
 	<!-- JS scripts here -->
 	<script>
-
 			var Months = ["January","February","March","April","May","June","July"]
 			var lineChartData1 = {
 				labels : Months,
@@ -85,7 +84,6 @@
 			var myLine2 = new Chart(document.getElementById("myChart2").getContext("2d")).Line(lineChartData2);
 			var myLine3 = new Chart(document.getElementById("myChart3").getContext("2d")).Line(lineChartData3);
 	</script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
     <script src="js/plugins.js"></script>

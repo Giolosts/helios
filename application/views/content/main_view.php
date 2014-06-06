@@ -69,7 +69,13 @@
 	<div class="container">
 		<?php if(!empty($pData)){ ?>
 		<div class="col-md-12">
-			<canvas id="myChart1" width="600" height="200"></canvas>
+			<div class="wrapper">
+			  <div class="container">
+			    <div class="canvas-container">
+			      <canvas id="myChart1" width="1024" height="640"></canvas>
+			    </div>
+			  </div>
+			</div>
 		</div>
 		<canvas id="myChart2" width="600" height="200"></canvas>
 		<canvas id="myChart3" width="600" height="400"></canvas>
