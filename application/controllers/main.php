@@ -28,11 +28,13 @@
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
-			$data['Emission'] = $kwH*365;
+			$data['CO2EmissionSolar'] = $kwH*365;
 			
 			
 			// With Solar Panel Bill
-			$data['monthlyBill'] = $this->getQuote($budget);
+			$data['monthlySolarBill'] = $this->getQuote($budget);
+			//$data['dailySolarkwH']
+			//$data['CO2EmissionSolar'] 
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -58,8 +60,9 @@
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
 		}
 		
-		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
-			//$emission = 
+		public function CO2EmissionSolar($kwH=NULL,$solarkwH=NULL){
+			$emission = (kwh - generated_kwh) * 365;
+			return $emission;
 		}
 		
 		//===========================
