@@ -105,7 +105,7 @@
 				
 				// Average savings if you use solar panel
 				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
-				
+				$data['trees'] =  ($data['Emission'] - $data['emissionSolar']) / 48;
 				
 				// Load View
 				$this->load->view('header.php',$data);
