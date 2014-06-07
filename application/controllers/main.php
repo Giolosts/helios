@@ -100,7 +100,7 @@
 
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
 		}
-			
+
 			return $emission;
 =======
 
