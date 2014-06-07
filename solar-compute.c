@@ -71,9 +71,10 @@ float fluctuation (float monthly_bill) {
 int main() {
 	float kwh, daily_kwh, monthly_bill, budget, kw, 
 	generated_kwh, monthly_generated, generated_bill = 0,
-	monthly_saved, emissions, new_emissions, new_co2, new_average_bill;
-	float monthly_fluctuation[12] = {0};
-	float kwh_fluctuation[12] = {0};
+	monthly_saved, emissions, new_emissions, new_co2, new_average_bill,
+	average_monthly_savings = 0;
+	float monthly_savings[12] = {0};
+	float solar_monthly_bills[12] = {0};
 	float solar_insolation[12] = {.92, .80, .66, .58,
 								  .66, .97, 1.07, 1.06,
 								  1.07, .98, 1, 1};
@@ -82,36 +83,46 @@ int main() {
 	printf("Hi, please enter your monthly kWh: ");
 	scanf("%f", &kwh);
 	
-	monthly_bill = compute(kwh);
+	monthly_bill = compute(kwh); // computes meralco bill
 	printf("\nAverage monthly bill: %.2f", monthly_bill);
 	
 	daily_kwh = kwh / 30;
 	
 	printf("\nYour average daily kWh usage is %.2fkWh", daily_kwh);
-	emissions = kwh * 12;
+	
+	emissions = kwh * 12; // computes yearly emissions
+	
 	printf("\nCurrently, your CO2 emmisions are %.0f CO2 pounds per year", emissions);
 	
 	printf("\n\nWhat is your budget for solar panels? ");
 	scanf("%f", &budget);
 	
-	kw = budget / 100000;
+	kw = budget / 100000; // 1kw == 100000 pesos
 	
-	generated_kwh = kw * 4.5; // daily
-	
+	generated_kwh = kw * 4.5; // daily kwh usage; 1kw ~= 4.5 kwh
+		
 	printf("Average kWh from solar panels daily: %.2f", generated_kwh);
 	
 	monthly_generated = generated_kwh * 30; // monthly generated kwh
 	
 	printf("\nAverage kWh from solar panels monthly: %.2f", monthly_generated);
 	
-	for(i = 0; i < 12; i++) {
-		kwh_fluctuation[i] = monthly_generated * solar_insolation[i];
-		monthly_fluctuation[i] = (kwh_fluctuation[i] / 30) * 1885.325;
-		printf("\nSolar savings month %d: %.2f", i + 1, monthly_fluctuation[i]);
-		new_average_bill += monthly_fluctuation[i];
+	monthly_saved = kw * 1795.33; // constant '1795.33' is based on current data from solar sites
+								   // 1kw ~= 1795.33 pesos in savings
+	
+	for(i = 0; i < 12; i++) { // stores varying monthly SAVINGS in array
+		monthly_savings[i] = monthly_saved * solar_insolation[i];
+		solar_monthly_bills[i] = monthly_bill - monthly_savings[i]; // stores each months solar bills into array
+		average_monthly_savings += monthly_savings[i]; // add all to one var
 	}
 	
-	new_average_bill /= 12;
+	// user solar_monthly_bills array for displaying in graph
+	
+	average_monthly_savings /= 12; // get average
+	
+	printf("\nAverage solar savings per month: %.2f", average_monthly_savings);
+	
+	new_average_bill = monthly_bill - average_monthly_savings;
 	
 	printf("\nYour new average monthly bill is: %.2f", new_average_bill);
 	
@@ -122,9 +133,9 @@ int main() {
 	//	monthly_fluctuation[i] = solar_insolation[i] * generated_bill; // computes monthly fluctuation of solar panel output
 	
 	printf("\n");
-	
+//	
 	for(i = 0; i < 12; i++)
-		printf("%.2f,", monthly_fluctuation[i]);
+		printf("%.2f,", solar_monthly_bills[i]);
 		
 	return 0;
 }
