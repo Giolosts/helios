@@ -63,18 +63,20 @@ float compute(float kwh) {
 	return total;
 }
 
-void fluctuation (float monthly_bill) {
-	float monthly_fluctuation[12] = {0};
-	float solar_insolation[5] = {};
-	int i = 0, m = 0;
-	
-	
+float fluctuation (float monthly_bill) {
+
+
 }
 
 int main() {
 	float kwh, daily_kwh, monthly_bill, budget, kw, 
 	generated_kwh, monthly_generated, generated_bill,
 	monthly_saved, emissions, new_emissions, new_co2;
+	float monthly_fluctuation[12] = {0};
+	float solar_insolation[12] = {1.1, 1.246, 1.506, 1.726,
+								  1.513, 1.03, .93, .946,
+								  .93, 1.013, 1, .993};
+	int i = 0;
 	
 	printf("Hi, please enter your monthly kWh: ");
 	scanf("%f", &kwh);
@@ -104,6 +106,14 @@ int main() {
 	
 	new_emissions = emissions - (kwh - monthly_generated) * 12;
 	printf("\nYour new  CO2 emmisions is %.0f CO2 pounds per year", emissions - new_emissions);
+	
+	for(i = 0; i < 12; i++)
+		monthly_fluctuation[i] = solar_insolation[i] * monthly_bill;
+	
+	printf("\n\n");
+	
+	for(i = 0; i < 12; i++)
+		printf("Month %d: %.2f\n", i + 1, monthly_fluctuation[i]);
 	
 	return 0;
 }
