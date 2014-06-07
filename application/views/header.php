@@ -11,6 +11,7 @@
 
         <link rel="stylesheet" href="<?=base_url();?>assets/css/main.css">
         <link rel="stylesheet" href="<?=base_url();?>assets/css/bootstrap.css">
+        <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
         <script src="<?=base_url();?>assets/js/Chart.min.js"></script>
     </head>
     <body>

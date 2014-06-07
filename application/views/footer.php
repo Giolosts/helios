@@ -25,14 +25,14 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [65,59,90,81,56,55,40]
+						data : [65,59,90,56,30,40,70]
 					},
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [28,48,40,19,96,27,100]
+						data : [65,49,70,61,40,20,0]
 					}
 				]
 				
@@ -42,18 +42,11 @@
 				labels : Months,
 				datasets : [
 					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#fff",
-						data : [65,59,90,81,56,55,40]
-					},
-					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [28,48,40,19,96,27,100]
+						data : [10,18,20,35,54,80,100]
 					}
 				]
 				
@@ -67,14 +60,14 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [65,59,90,81,56,55,40]
+						data : [65,70,73,78,80,86,90]
 					},
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [28,48,40,19,96,27,100]
+						data : [65,55,30,10,0,0,0]
 					}
 				]
 				
