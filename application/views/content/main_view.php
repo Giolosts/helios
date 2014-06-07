@@ -81,7 +81,7 @@
 		</div>
 		<div class="chart">
 			<h5>This chart shows how much money you will save on your electricity bill per month.
-				Based on your budget, you can get <?php print_r($monthlySolar);?> savings per month.<h5>
+				Based on your budget, you can get <strong><?php print_r($monthlySolar);?></strong> savings per month.<h5>
 			<canvas id="myChart1" width="900" height="300"></canvas>
 		</div>
 		<div class="chart">
