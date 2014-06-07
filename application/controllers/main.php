@@ -35,13 +35,13 @@
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getBillQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
-			$data['Emission'] = $kwH*365;
+			$data['Emission'] = $kwH*12;
 			
 			// With Solar Panel Bill
 			$data['monthlySolar'] = $this->getSolarQuote($kwH,$budget);
 			$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
 			$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
-			$data['emissionSolar'] =  $data['Emission'] - (($data['monthlySolar']  - $kwH   ) * 365);
+			$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -198,7 +198,30 @@
 
 			return $uniAmt;
 		}
-
+		
+		public function xcode(){
+			$xcode = $this->uri->segment('3');
+			if($xcode != ''){
+				
+				
+				// Load View
+				$this->load->view('header.php',$data);
+				$this->load->view('content/main_view.php',$data);
+				$this->load->view('footer.php',$data);
+			}
+			else{
+				header('Location:'.base_url().'index.php/main');
+			}
+		}
+		
+		function generateRandomString($length = 10) {
+			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, strlen($characters) - 1)];
+			}
+			return $randomString;
+		}
 	}
 	
 ?>
