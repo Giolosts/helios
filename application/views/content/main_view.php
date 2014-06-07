@@ -104,8 +104,9 @@
 			<canvas id="myChart2" width="900" height="300"></canvas>
 		</div>
 		<div class="chart">
-			<h5>Your overall carbon footprint will be lowered from <strong><?php print_r($Emission);?> pounds of CO2</strong> to <strong><?php print_r($emissionSolar);?></strong>,
-				equivalent to $tree-numbers trees being planted.<h5>
+			<h5>Your overall carbon footprint will be lowered from <strong><?php print_r($Emission);?> pounds of CO2
+			</strong> to <strong><?php print_r($emissionSolar);?> pounds of CO2</strong>,
+				equivalent to <?php print_r($trees);?> trees being planted.<h5>
 			<canvas id="myChart3" width="900" height="300"></canvas>
 		</div>
 		<div class="interested">
