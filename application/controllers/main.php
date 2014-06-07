@@ -26,37 +26,22 @@
 
 			// Data variables
 			$data['pData'] = $_POST;
-	
-			// Normal Energy Bill
-			// Normal Energy Bill
-			$data['monthlyBill'] = $this->getQuote($kwH);
-			$data['dailykwH'] = $kwH/30;
-			$data['CO2EmissionSolar'] = $kwH*365;
-			
-			
-			// With Solar Panel Bill
-			$data['monthlySolarBill'] = $this->getQuote($budget);
-			//$data['dailySolarkwH']
-			//$data['CO2EmissionSolar'] 
-			
+
 			$data['kW'] = $_POST['kW'];
 			$data['Amt'] = $_POST['Amt'];
 
 
 			// Normal Energy Bill
-			$data['monthlyBill'] = $this->getQuote($kwH);
-			$data['dailykwH'] = $kwH/30;
-
-
-			// Normal Energy Bill
-			$data['monthlyBill'] = $this->getQuote($kwH);
+			$data['monthlyBill'] = $this->getBillQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 			$data['Emission'] = $kwH*365;
 
 
 			// With Solar Panel Bill
-			$data['monthlyBill'] = $this->getQuote($budget);
-
+			$data['monthlyBill'] = $this->getSolarQuote($budget);
+			//$data['dailySolarkwH']
+			//$data['CO2EmissionSolar'] 
+			
 			// Load View
 			$this->load->view('header.php',$data);
 			$this->load->view('content/main_view.php',$data);
