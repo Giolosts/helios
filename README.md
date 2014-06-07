@@ -1,5 +1,4 @@
-#Helios 
-##(n) - God of the Sun
+##Helios - (n) - God of the Sun
 ======
 
 This web app lets users project a solar conversion in their home.
