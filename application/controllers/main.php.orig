@@ -28,8 +28,8 @@
 			$data['pData'] = $_POST;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
-			// Normal Energy Bill
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
@@ -58,6 +58,15 @@
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
+=======
+			$data['kW'] = $_POST['kW'];
+			$data['Amt'] = $_POST['Amt'];
+
+
+			// Normal Energy Bill
+			$data['monthlyBill'] = $this->getQuote($kwH);
+			$data['dailykwH'] = $kwH/30;
+>>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 			$data['Emission'] = $kwH*365;
 
 
@@ -65,6 +74,9 @@
 			$data['monthlyBill'] = $this->getQuote($budget);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
+=======
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 =======
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
@@ -75,11 +87,16 @@
 		}
 <<<<<<< HEAD
 <<<<<<< HEAD
-
+<<<<<<< HEAD
+		
 =======
 
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 =======
+
+>>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
+=======
+
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 		//===========================
 		// Get Total Computations (Solar)
@@ -97,16 +114,24 @@
 			$kWh = $kW * 4.5;	// Daily kWh consumble energy produces by solar panel
 <<<<<<< HEAD
 <<<<<<< HEAD
-
+<<<<<<< HEAD
+			
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
 		}
-			
+		
+		public function CO2EmissionSolar($kwH=NULL,$solarkwH=NULL){
+			$emission = (kwh - generated_kwh) * 365;
 			return $emission;
 =======
 
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 		}
+=======
+
+			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
+		}
+>>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 =======
 
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
@@ -235,7 +260,11 @@
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 =======
 ?>
 >>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
