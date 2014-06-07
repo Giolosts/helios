@@ -25,7 +25,7 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($monthlySolarBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
+						data : [<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
 								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
 								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
 								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,]
