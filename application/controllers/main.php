@@ -25,22 +25,22 @@
 		public function generate($kwH = NULL,$budget = NULL){
 
 			// Data variables
-			$data['pData'] = $_POST;
+			//$data['pData'] = $_POST;
 
 			$data['kW'] = $_POST['kW'];
 			$data['Amt'] = $_POST['Amt'];
 
-
+			
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getBillQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 			$data['Emission'] = $kwH*365;
 
-
 			// With Solar Panel Bill
-			$data['monthlyBill'] = $this->getSolarQuote($budget);
-			//$data['dailySolarkwH']
-			//$data['CO2EmissionSolar'] 
+			$data['monthlySolar'] = $this->getSolarQuote($kwH,$budget);
+			$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
+			$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
+			e$data['emissionSolar'] =   ($kwH  - $data['monthlySolar'] ) * 365;
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -53,21 +53,33 @@
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		//===========================
 		public function getSolarQuote($kwH=NULL,$budget=NULL){
-			$budget = 100000;
-			$solarkWh = $this->energySolar($budget);
+			$solarkWh = $this->energySolar('kW',$budget);
+			$solarkWh = $solarkWh['kW'];
 			$monthlyBill = $this->getBillQuote($kwH);
-			echo $monthlyBill - ( $solarkWh * 1885.325);
+			return $monthlyBill - (1 * 1885.325);
 		}
 
-		public function energySolar($budget=NULL){
-			$kW = $budget/100000;	// daily kW produces by solar panel
-			$kWh = $kW * 4.5;	// Daily kWh consumble energy produces by solar panel
-
-			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
-		}
+		public function energySolar($cat=NULL,$budget=NULL){
+			$solarkWh = array(); // data set container for kwH
+			$solarkWh['kW'] = $budget/100000;	// daily kW produces by solar panel
+			$solarkWh['dailykWh'] = $solarkWh['kW'] * 4.5;	// Daily kWh consumble energy produces by solar panel
+			$solarkWh['monthlykWh'] = $solarkWh['kW'] * 30;	// Monthly kwH consumable energy produces by solar panel
+			
+			switch($cat):
+				case 'kW':
+					return $solarkWh['kW'];
+				case 'dailykWh':
+					return $solarkWh['dailykWh'];
+				case 'monthlykWh': 
+					return $solarkWh['monthlykWh'];
+				default:
+					return 'No Selected Category';
+			endswitch;
+			
+		} 
 
 		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
-			$emission = (kwh - generated_kwh) * 365;
+			$emission = ($normalkwH - $solarkwH) * 365;
 			return $emission;
 		}
 
