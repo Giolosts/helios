@@ -16,7 +16,7 @@
 
 	<!-- JS scripts here -->
 	<script>
-			var Months = ["January","February","March","April","May","June","July"]
+			var Months = ["January","February","March","April","May","June","July","August","September","October","Novemeber","December"]
 			var lineChartData1 = {
 				labels : Months,
 				datasets : [
@@ -25,14 +25,27 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [65,59,90,56,30,40,70]
+						data : [<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
+								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
+								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
+								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,]
 					},
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [65,49,70,61,40,20,0]
+						data : [4981.86,4332.05,3573.94,3140.73,3573.94,5252.61,5794.11,5739.96,5794.11,5306.76,5415.06,5415.06]
+					},
+					{
+						fillColor : "rgba(190,190,190,0.5)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						data : [<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
+								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
+								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
+								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,]
 					}
 				]
 				
