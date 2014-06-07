@@ -21,7 +21,7 @@
 			$this->load->view('content/main_view.php',$data);
 			$this->load->view('footer.php',$data);
 		}
-
+		
 		public function generate($kwH = NULL,$budget = NULL){
 			$kW = isset($_POST['kW'])? $_POST['kW'] : '';
 			$Amt = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
@@ -41,14 +41,88 @@
 			
 			header('Location:xcode/'.$xcode);
 		}
-
+		
+				
+		public function xcode(){
+			$xcode = $this->uri->segment('3');
+			if($xcode != ''){
+				//$query = $this->db->get('cache')->result();
+				//print_r($query);
+				//$data = $this->db->get_where('cache', array('xcode' => $xcode));
+				//print_r($data);
+				
+				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
+				//print_r($data);
+				// Data variables
+				//$data['pData'] = $_POST;
+				
+				foreach ($data as $row)
+				{
+					$data['kW'] = $row->kwH;
+					$data['Amt'] = $row->budget;
+				}
+				//exit;
+				echo $kwH = $data['kW'];
+				//echo '</br>';
+				echo $budget = $data['Amt'];
+				//echo '</br>';
+				/*
+				echo '</br>';
+				echo 'Generation:'.$this->generation($kwH);
+				echo '</br>';
+				echo 'Transmission:'.$this->transmission($kwH);
+				echo '</br>';
+				echo 'System Loss:'.$this->systemLoss($kwH);
+				echo '</br>';
+				echo 'Distribution:'.$this->distribution($kwH);
+				echo '</br>';
+				echo 'Subsidies:'.$this->subsidies($kwH);
+				echo '</br>';
+				echo 'universal:'.$this->universal($kwH);
+				exit;
+				*/
+				
+				// Normal Energy Bill
+				echo $data['monthlyBill'] = $this->getBillQuote($kwH);
+				$data['dailykwH'] = $kwH/30;
+				$data['Emission'] = $kwH*12;
+				
+				// With Solar Panel Bill
+				echo $data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
+				/*
+				$kw = $this->energySolar('kW',$budget);
+				echo 'Solar kW:'.$kw;
+				echo '</br>';
+				echo $monthlySolarBill = $data['monthlyBill'] - ($kw * 1885.325);
+				echo '<br/>';
+				echo 'Monthly Solar Bill: '.$monthlySolarBill;
+				echo '</br>';
+				*/
+				$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
+				//exit;
+				$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
+				$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
+				
+				// Average savings if you use solar panel
+				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
+				
+				
+				// Load View
+				$this->load->view('header.php',$data);
+				$this->load->view('content/main_view.php',$data);
+				$this->load->view('footer.php',$data);
+			}
+			else{
+				header('Location:'.base_url().'index.php/main');
+			}
+		}
+		
 		//===========================
 		// Get Total Computations (Solar)
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		//===========================
 		public function getSolarQuote($kwH=NULL,$budget=NULL){
 			$solarkWh = $this->energySolar('kW',$budget);
-			$solarkWh = $solarkWh['kW'];
 			$monthlyBill = $this->getBillQuote($kwH);
 			return $monthlyBill - ($solarkWh * 1885.325);
 		}
@@ -180,7 +254,7 @@
 		// Compute Universal Charges
 		//===========================
 		public function universal($kwH = NULL){
-			$kwH = 100; // Test Data
+			//$kwH = 100; // Test Data
 			$uniCharge = array(0.1561,0.0025,0.1938); // Fix Universal charge rates
 			$uniAmt = 0; // Average Universal Charge per kwH
 
@@ -190,53 +264,6 @@
 			}
 
 			return $uniAmt;
-		}
-		
-		public function xcode(){
-			$xcode = $this->uri->segment('3');
-			if($xcode != ''){
-				//$query = $this->db->get('cache')->result();
-				//print_r($query);
-				//$data = $this->db->get_where('cache', array('xcode' => $xcode));
-				//print_r($data);
-				
-				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
-				//print_r($data);
-				// Data variables
-				//$data['pData'] = $_POST;
-				
-				foreach ($data as $row)
-				{
-					$data['kW'] = $row->kwH;
-					$data['Amt'] = $row->budget;
-				}
-				//exit;
-				$kwH = $data['kW'];
-				$budget = $data['Amt'];
-				
-				// Normal Energy Bill
-				$data['monthlyBill'] = $this->getBillQuote($kwH);
-				$data['dailykwH'] = $kwH/30;
-				$data['Emission'] = $kwH*12;
-				
-				// With Solar Panel Bill
-				$data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
-				$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
-				$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
-				$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
-				
-				// Average savings if you use solar panel
-				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
-				
-				
-				// Load View
-				$this->load->view('header.php',$data);
-				$this->load->view('content/main_view.php',$data);
-				$this->load->view('footer.php',$data);
-			}
-			else{
-				header('Location:'.base_url().'index.php/main');
-			}
 		}
 		
 		function generateRandomString($length = 5) {
