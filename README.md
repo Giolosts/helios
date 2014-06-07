@@ -7,7 +7,7 @@ This web app lets users project a solar conversion in their home.
 - [x] Chart front-end
 - [x] Backend controllers
 - [ ] Unique URL per generated quote
-- [ ] Save charts/data to PDF
+- [ ] ~~Save charts/data to PDF~~
 - [ ] Share charts/data to social networks
 - [ ] Add computations for Windmill conversion
 - [ ] Varying solar insolation (6 months sunny, 6 months cloudy/rain)
