@@ -41,7 +41,7 @@
 			$data['monthlySolar'] = $this->getSolarQuote($kwH,$budget);
 			$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
 			$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
-			$data['emissionSolar'] =   $data['Emission']  - (($kwH  - $data['monthlySolar'] ) * 365);
+			$data['emissionSolar'] =  $data['Emission'] - (($data['monthlySolar']  - $kwH   ) * 365);
 			
 			// Load View
 			$this->load->view('header.php',$data);
