@@ -26,9 +26,7 @@
 
 			// Data variables
 			$data['pData'] = $_POST;
-<<<<<<< HEAD
-<<<<<<< HEAD
-			
+	
 			// Normal Energy Bill
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
@@ -41,7 +39,6 @@
 			//$data['dailySolarkwH']
 			//$data['CO2EmissionSolar'] 
 			
-=======
 			$data['kW'] = $_POST['kW'];
 			$data['Amt'] = $_POST['Amt'];
 
@@ -49,38 +46,23 @@
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
-=======
-			$data['kW'] = $_POST['kW'];
-			$data['Amt'] = $_POST['Amt'];
 
 
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 			$data['Emission'] = $kwH*365;
 
 
 			// With Solar Panel Bill
 			$data['monthlyBill'] = $this->getQuote($budget);
 
-<<<<<<< HEAD
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
-=======
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 			// Load View
 			$this->load->view('header.php',$data);
 			$this->load->view('content/main_view.php',$data);
 			$this->load->view('footer.php',$data);
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
-=======
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 		//===========================
 		// Get Total Computations (Solar)
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
@@ -95,26 +77,13 @@
 		public function energySolar($budget=NULL){
 			$kW = $budget/100000;	// daily kW produces by solar panel
 			$kWh = $kW * 4.5;	// Daily kWh consumble energy produces by solar panel
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
 		}
-
-			return $emission;
-=======
-
-			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
-		}
-=======
-
-			return $kWh * 30; // Monthly kwH consumable energy produces by solar panel
-		}
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
 
 		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
-			//$emission = 
+			$emission = (kwh - generated_kwh) * 365;
+			return $emission;
 		}
 
 		//===========================
@@ -233,9 +202,6 @@
 		}
 
 	}
+	
+?>
 
-<<<<<<< HEAD
-?>
-=======
-?>
->>>>>>> 6337e87792e300f201890f00a5fab65a5381ec6b
