@@ -15,7 +15,7 @@
 			$data['pData'] = '';
 			$data['kW'] = '';
 			$data['Amt'] = '';
-
+	
 			// Load View
 			$this->load->view('header.php',$data);
 			$this->load->view('content/main_view.php',$data);
@@ -23,30 +23,23 @@
 		}
 
 		public function generate($kwH = NULL,$budget = NULL){
-
-			// Data variables
-			//$data['pData'] = $_POST;
-
-			$data['kW'] = isset($_POST['kW'])? $_POST['kW'] : '';
-			$data['Amt'] = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
-
-			$kwH = $data['kW'];
-			$budget = $data['Amt'];
-			// Normal Energy Bill
-			$data['monthlyBill'] = $this->getBillQuote($kwH);
-			$data['dailykwH'] = $kwH/30;
-			$data['Emission'] = $kwH*12;
+			$kW = isset($_POST['kW'])? $_POST['kW'] : '';
+			$Amt = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
 			
-			// With Solar Panel Bill
-			$data['monthlySolar'] = $this->getSolarQuote($kwH,$budget);
-			$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
-			$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
-			$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
+			do{
+				$xcode = $this->generateRandomString();
+				$cData = $this->db->where('xcode',$xcode)->count_all_results('cache');
+			}while($cData > 0);
 			
-			// Load View
-			$this->load->view('header.php',$data);
-			$this->load->view('content/main_view.php',$data);
-			$this->load->view('footer.php',$data);
+			$data = array(
+			   'xcode' => $xcode ,
+			   'kwH' => $kW ,
+			   'budget' => $Amt
+			);
+
+			$this->db->insert('cache', $data); 
+			
+			header('Location:xcode/'.$xcode);
 		}
 
 		//===========================
@@ -202,6 +195,38 @@
 		public function xcode(){
 			$xcode = $this->uri->segment('3');
 			if($xcode != ''){
+				//$query = $this->db->get('cache')->result();
+				//print_r($query);
+				//$data = $this->db->get_where('cache', array('xcode' => $xcode));
+				//print_r($data);
+				
+				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
+				//print_r($data);
+				// Data variables
+				//$data['pData'] = $_POST;
+				
+				foreach ($data as $row)
+				{
+					$data['kW'] = $row->kwH;
+					$data['Amt'] = $row->budget;
+				}
+				//exit;
+				$kwH = $data['kW'];
+				$budget = $data['Amt'];
+				
+				// Normal Energy Bill
+				$data['monthlyBill'] = $this->getBillQuote($kwH);
+				$data['dailykwH'] = $kwH/30;
+				$data['Emission'] = $kwH*12;
+				
+				// With Solar Panel Bill
+				$data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
+				$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
+				$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
+				$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
+				
+				// Average savings if you use solar panel
+				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
 				
 				
 				// Load View
@@ -214,7 +239,7 @@
 			}
 		}
 		
-		function generateRandomString($length = 10) {
+		function generateRandomString($length = 5) {
 			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$randomString = '';
 			for ($i = 0; $i < $length; $i++) {
