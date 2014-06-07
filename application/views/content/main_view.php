@@ -75,7 +75,7 @@
 		<?php if(!empty($pData)){ ?>
 		<div id="short-header"></div>
 		<div class="user-data">
-			<h3>Your average monthly kWh usage: PHP <?php print_r($kW);?></h1>
+			<h3>Your average monthly kWh usage: <?php print_r($kW);?> kWh</h1>
 			<h4>Budget for solar conversion: PHP <?php print_r($Amt);?></h2>
 		</div>
 		<div class="chart">
@@ -93,6 +93,20 @@
 			<h5>Your overall carbon footprint will be lowered from $emmisions to $new-emmisions,
 				equivalent to $tree-numbers trees being planted.<h5>
 			<canvas id="myChart3" width="1000" height="300"></canvas>
+		</div>
+		<div class="interested">
+			<h3>Interested in converting your home to Solar? Order Solar panels from these local distributors: </h3>
+			<div class="row">
+				<div class="col-md-4">
+					<img src="<?=base_url();?>/assets/img/distributor1.png" alt="Distributor 1">
+				</div>
+				<div class="col-md-4">
+					<img src="<?=base_url();?>/assets/img/distributor1.png" alt="Distributor 1">
+				</div>
+				<div class="col-md-4">
+					<img src="<?=base_url();?>/assets/img/distributor1.png" alt="Distributor 1">
+				</div>
+			</div>
 		</div>
 		<?php } ?>
 	</div>
