@@ -4,7 +4,7 @@ Helios (n) - God of the Sun
 This web app lets users project a solar conversion in their home.
 
 - [x] Home front-end
-- [ ] Chart front-end (responsive)
+- [x] Chart front-end
 - [x] Backend controllers
 - [ ] Unique URL per generated quote
 - [ ] Save charts/data to PDF
@@ -12,5 +12,6 @@ This web app lets users project a solar conversion in their home.
 - [ ] Add computations for Windmill conversion
 
 Made with PHP/CI & HTML5, CSS, JS
+
 Charts are generated using framework Chart.js (http://chartjs.org)
 
