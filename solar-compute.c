@@ -70,9 +70,10 @@ float fluctuation (float monthly_bill) {
 
 int main() {
 	float kwh, daily_kwh, monthly_bill, budget, kw, 
-	generated_kwh, monthly_generated, generated_bill,
-	monthly_saved, emissions, new_emissions, new_co2;
+	generated_kwh, monthly_generated, generated_bill = 0,
+	monthly_saved, emissions, new_emissions, new_co2, new_average_bill;
 	float monthly_fluctuation[12] = {0};
+	float kwh_fluctuation[12] = {0};
 	float solar_insolation[12] = {.92, .80, .66, .58,
 								  .66, .97, 1.07, 1.06,
 								  1.07, .98, 1, 1};
@@ -101,15 +102,29 @@ int main() {
 	
 	monthly_generated = generated_kwh * 30; // monthly generated kwh
 	
-	generated_bill = monthly_bill - kw * 1885.325;
-	printf("\nYour new monthly bill is: %.2f", generated_bill);
+	printf("\nAverage kWh from solar panels monthly: %.2f", monthly_generated);
+	
+	for(i = 0; i < 12; i++) {
+		kwh_fluctuation[i] = monthly_generated * solar_insolation[i];
+		monthly_fluctuation[i] = (kwh_fluctuation[i] / 30) * 1885.325;
+		printf("\nSolar savings month %d: %.2f", i + 1, monthly_fluctuation[i]);
+		new_average_bill += monthly_fluctuation[i];
+	}
+	
+	new_average_bill /= 12;
+	
+	printf("\nYour new average monthly bill is: %.2f", new_average_bill);
 	
 	new_emissions = emissions - (kwh - monthly_generated) * 12;
 	printf("\nYour new  CO2 emmisions is %.0f CO2 pounds per year", emissions - new_emissions);
 	
+	// for(i = 0; i < 12; i++)
+	//	monthly_fluctuation[i] = solar_insolation[i] * generated_bill; // computes monthly fluctuation of solar panel output
+	
+	printf("\n");
+	
 	for(i = 0; i < 12; i++)
-		monthly_fluctuation[i] = solar_insolation[i] * monthly_bill; // computes monthly fluctuation of solar panel output
-	
-	
+		printf("%.2f,", monthly_fluctuation[i]);
+		
 	return 0;
 }
