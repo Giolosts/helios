@@ -62,9 +62,9 @@
 					$data['Amt'] = $row->budget;
 				}
 				//exit;
-				echo $kwH = $data['kW'];
+				$kwH = $data['kW'];
 				//echo '</br>';
-				echo $budget = $data['Amt'];
+				$budget = $data['Amt'];
 				//echo '</br>';
 				/*
 				echo '</br>';
@@ -83,12 +83,12 @@
 				*/
 				
 				// Normal Energy Bill
-				echo $data['monthlyBill'] = $this->getBillQuote($kwH);
+				$data['monthlyBill'] = $this->getBillQuote($kwH);
 				$data['dailykwH'] = $kwH/30;
 				$data['Emission'] = $kwH*12;
 				
 				// With Solar Panel Bill
-				echo $data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
+				$data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
 				/*
 				$kw = $this->energySolar('kW',$budget);
 				echo 'Solar kW:'.$kw;
