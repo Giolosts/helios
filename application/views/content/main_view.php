@@ -85,7 +85,8 @@
 		</div>
 		<div class="chart">
 			<h5>Per year, your ROI will be $ROI%.
-				Within %duration years, your investment will have paid for itself and you have helped the environment along the way.<h5>
+				Within %duration years, your investment will have paid for itself and 
+				you have helped the environment along the way.<h5>
 			<canvas id="myChart2" width="1000" height="300"></canvas>
 		</div>
 		<div class="chart">
