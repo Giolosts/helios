@@ -10,6 +10,7 @@ This web app lets users project a solar conversion in their home.
 - [ ] Save charts/data to PDF
 - [ ] Share charts/data to social networks
 - [ ] Add computations for Windmill conversion
+- [ ] Varying solar insolation (6 months sunny, 6 months cloudy/rain)
 
 Made with PHP/CI & HTML5, CSS, and JS.
 
