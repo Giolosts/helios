@@ -27,20 +27,21 @@
 			// Data variables
 			//$data['pData'] = $_POST;
 
-			$data['kW'] = $_POST['kW'];
-			$data['Amt'] = $_POST['Amt'];
+			$data['kW'] = isset($_POST['kW'])? $_POST['kW'] : '';
+			$data['Amt'] = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
 
-			
+			$kwH = $data['kW'];
+			$budget = $data['Amt'];
 			// Normal Energy Bill
 			$data['monthlyBill'] = $this->getBillQuote($kwH);
 			$data['dailykwH'] = $kwH/30;
 			$data['Emission'] = $kwH*365;
-
+			
 			// With Solar Panel Bill
 			$data['monthlySolar'] = $this->getSolarQuote($kwH,$budget);
 			$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
 			$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
-			$data['emissionSolar'] =   ($kwH  - $data['monthlySolar'] ) * 365;
+			$data['emissionSolar'] =   $data['Emission']  - (($kwH  - $data['monthlySolar'] ) * 365);
 			
 			// Load View
 			$this->load->view('header.php',$data);
@@ -56,14 +57,14 @@
 			$solarkWh = $this->energySolar('kW',$budget);
 			$solarkWh = $solarkWh['kW'];
 			$monthlyBill = $this->getBillQuote($kwH);
-			return $monthlyBill - (1 * 1885.325);
+			return $monthlyBill - ($solarkWh * 1885.325);
 		}
 
 		public function energySolar($cat=NULL,$budget=NULL){
 			$solarkWh = array(); // data set container for kwH
 			$solarkWh['kW'] = $budget/100000;	// daily kW produces by solar panel
 			$solarkWh['dailykWh'] = $solarkWh['kW'] * 4.5;	// Daily kWh consumble energy produces by solar panel
-			$solarkWh['monthlykWh'] = $solarkWh['kW'] * 30;	// Monthly kwH consumable energy produces by solar panel
+			$solarkWh['monthlykWh'] = $solarkWh['dailykWh'] * 30;	// Monthly kwH consumable energy produces by solar panel
 			
 			switch($cat):
 				case 'kW':
