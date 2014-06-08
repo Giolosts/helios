@@ -114,7 +114,7 @@
 			}
 			
 			var barChartData1 = {
-				labels : ["One", "Two"],
+				labels : ["Current Emissions", "Emissions after installation"],
 				datasets : [
 					{
 						fillColor : "rgba(220,220,220,0.5)",
