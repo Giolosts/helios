@@ -79,21 +79,21 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($normalE);?>]
+						data : <?php print_r($normalE);?>
 					},
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($solarMonthlybills) ?>]
+						data : <?php print_r($solarMonthlybills); ?>
 					},
 					{
 						fillColor : "rgba(190,190,190,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($solarE);?>]
+						data : <?php print_r($solarE);?>
 					}
 				]
 				

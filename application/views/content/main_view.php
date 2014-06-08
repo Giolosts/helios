@@ -87,8 +87,8 @@
 		</div>
 		<div class="chart">
 			<h5>This chart shows how much money you will save on your electricity bill per month.
-				Based on your budget, you can get <strong><?php print_r($monthlySolar);?></strong> savings per month.<h5>
-			<h5><?php print_r($normalE);?></h5>
+				Based on your budget, you can get <strong>PHP <?php print_r(round($monthlyEsave,2));?></strong> savings per month.<h5>
+			<h5><?php //print_r($normalE);?></h5>
 			<canvas id="myChart1" width="900" height="300"></canvas>
 		</div>
 		<div class="chart">
@@ -101,14 +101,14 @@
 			<?php if($emissionSolar > 0) { ?>
 			<h5>Your overall carbon footprint will be lowered from <strong><?php print_r($Emission);?> pounds of CO2
 			</strong> to <strong><?php print_r($emissionSolar);?> pounds of CO2</strong>,
-				equivalent to <span class="text-success"><strong><?php print_r(round($trees, 1));?></strong></span> trees being planted.<h5>
+				equivalent to <span class="text-success"><strong><?php print_r(round($trees, 0));?></strong></span> trees being planted.<h5>
 			<?php } ?>
 			<?php if($emissionSolar <= 0) { ?>
 			<h5>Upon installing solar panels, your carbon footprint from your home will be completely gone.
 				Your solar installation is equivalent to <span class="text-success"><strong><?php print_r($trees);?></strong></span>
 				trees planted in terms of <strong>CO2 absorption</strong>. You're helping mother earth in a big way!</h5>
 			<?php } ?>
-			<?php print_r($Emission);?>, <?php if($emissionSolar > 0) { print_r($emissionSolar);} else {echo 0;} ?>
+			<?php //print_r($Emission);?>, <?php //if($emissionSolar > 0) { print_r($emissionSolar);} else {echo 0;} ?>
 			<canvas id="myChart3" width="900" height="300"></canvas>
 		</div>
 		<div class="interested">
