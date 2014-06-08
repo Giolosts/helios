@@ -71,7 +71,7 @@
 		//===========================
 		public function xcode(){
 			$xcode = $this->uri->segment('3');
-			
+			$data['xcode'] = $xcode;
 			// Check wether a bigData is generated else return generation page
 			if($xcode != ''){
 				
