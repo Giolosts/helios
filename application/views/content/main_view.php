@@ -6,7 +6,6 @@
     		<div class="share">
 				<div class="fb-share-button" data-href="<?=base_url();?>/index.php/main/content" data-width="100" data-type="button"></div>
 			</div>
-			
     	</nav>
 		<div id="header">
 			<div class="header-text">
@@ -20,7 +19,7 @@
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="kW" placeholder="Average kWH/month">
+							<input type="number" class="form-control" name="kW" min="50" max="2000" placeholder="Average kWH/month">
 						</div>
 						<div class="kwh-info">
 							<div class="hidden-xs">
@@ -38,7 +37,7 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="Amt" placeholder="Budget for conversion">
+							<input type="number" class="form-control" name="Amt" min="50000" max="500000"placeholder="Budget for conversion">
 							<div class="clear"></div>
 						</div>
 						<div class="col-sm-3">
@@ -80,6 +79,9 @@
 	<div class="container-fluid">
 		<nav>
     		<h5>Helios</h5>
+    		<div class="share">
+				<div class="fb-share-button" data-href="<?=base_url();?>/index.php/main/content" data-width="100" data-type="button"></div>
+			</div>
     	</nav>
 		<div id="short-header">
 			<h3>Your average monthly kWh usage: <strong><?php print_r($kW);?> kWh</strong></h1>
@@ -104,7 +106,7 @@
 			<?php } ?>
 			<?php if($emissionSolar <= 0) { ?>
 			<h5>Upon installing solar panels, your carbon footprint from your home will be completely gone.
-				Your solar installation is equivalent to <span class="text-success"><strong><?php print_r($trees);?></strong></span>
+				Your solar installation is equivalent to <span class="text-success"><strong><?php print_r(round($trees, 0));?></strong></span>
 				trees planted in terms of <strong>CO2 absorption</strong>. You're helping mother earth in a big way!</h5>
 			<?php } ?>
 			<?php //print_r($Emission);?>, <?php //if($emissionSolar > 0) { print_r($emissionSolar);} else {echo 0;} ?>

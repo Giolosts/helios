@@ -76,26 +76,26 @@
 				labels : Months,
 				datasets : [
 					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
+						fillColor : "rgba(255,162,0,0.5)",
+						strokeColor : "rgba(255,162,0,1)",
+						pointColor : "rgba(255,162,0,1)",
 						pointStrokeColor : "#fff",
 						data : <?php print_r($normalE);?>
 					},
 					{
-						fillColor : "rgba(151,187,205,0.5)",
-						strokeColor : "rgba(151,187,205,1)",
-						pointColor : "rgba(151,187,205,1)",
-						pointStrokeColor : "#fff",
-						data : <?php print_r($solarMonthlybills); ?>
-					},
-					{
-						fillColor : "rgba(190,190,190,0.5)",
-						strokeColor : "rgba(151,187,205,1)",
-						pointColor : "rgba(151,187,205,1)",
+						fillColor : "rgba(167,219,216,0.5)",
+						strokeColor : "rgba(167,219,216,1)",
+						pointColor : "rgba(167,219,216,1)",
 						pointStrokeColor : "#fff",
 						data : <?php print_r($solarE);?>
-					}
+					},
+					{
+						fillColor : "rgba(105,210,231,0.5)",
+						strokeColor : "rgba(105,210,231,1)",
+						pointColor : "rgba(105,210,231,1)",
+						pointStrokeColor : "#fff",
+						data : <?php print_r($solarMonthlybills); ?>
+					}	
 				]
 				
 			}
@@ -104,9 +104,9 @@
 				labels : ROILabel,
 				datasets : [
 					{
-						fillColor : "rgba(151,187,205,0.5)",
-						strokeColor : "rgba(151,187,205,1)",
-						pointColor : "rgba(151,187,205,1)",
+						fillColor : "rgba(105,210,231,0.5)",
+						strokeColor : "rgba(105,210,231,1)",
+						pointColor : "rgba(105,210,231,1)",
 						pointStrokeColor : "#fff",
 						data : <?php print_r($yearlyRoi) ?>
 					}
