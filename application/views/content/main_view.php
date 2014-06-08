@@ -80,7 +80,7 @@
 		<nav>
     		<h5>Helios</h5>
     		<div class="share">
-				<div class="fb-share-button" data-href="<?=base_url();?>/index.php/main/content" data-width="100" data-type="button"></div>
+				<div class="fb-share-button" data-href="<?php print_r($xcode);?>" data-width="100" data-type="button"></div>
 			</div>
     	</nav>
 		<div id="short-header">
