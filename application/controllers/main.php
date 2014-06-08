@@ -39,7 +39,7 @@
 			$kW = isset($_POST['kW'])? $_POST['kW'] : '';
 			$Amt = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
 			
-			if($kW > 50 && $Amt > 50000){
+			if($kW >= 50 && $Amt >= 50000){
 				// Unique url(xcode generator)
 				// has database checking
 				do{
