@@ -87,11 +87,7 @@
 				// Normal Energy Bill
 				$data['monthlyBill'] = $this->getBillQuote($kwH);
 				$data['dailykwH'] = $kwH/30;
-<<<<<<< HEAD
-				$data['Emission'] = $kwH*12; //
-=======
 				$data['Emission'] = $kwH*12;
->>>>>>> 1c80df6842d804f7f1ec2a6d97a58688d2ae321f
 				
 				// With Solar Panel Bill
 				$data['monthlySolarBill'] = $this->getSolarQuote('monthlySavings',$kwH,$budget);
