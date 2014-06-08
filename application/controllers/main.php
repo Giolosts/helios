@@ -15,7 +15,7 @@
 			$data['pData'] = '';
 			$data['kW'] = '';
 			$data['Amt'] = '';
-	
+			
 			// Load View
 			$this->load->view('header.php',$data);
 			$this->load->view('content/main_view.php',$data);
@@ -45,68 +45,51 @@
 				
 		public function xcode(){
 			$xcode = $this->uri->segment('3');
+			
+			// Check wether a bigData is generated else return generation page
 			if($xcode != ''){
-				//$query = $this->db->get('cache')->result();
-				//print_r($query);
-				//$data = $this->db->get_where('cache', array('xcode' => $xcode));
-				//print_r($data);
 				
+				// Get db cache of the generated  big Data  
 				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
-				//print_r($data);
-				// Data variables
-				//$data['pData'] = $_POST;
 				
 				foreach ($data as $row)
 				{
 					$data['kW'] = $row->kwH;
 					$data['Amt'] = $row->budget;
 				}
-				//exit;
-				$kwH = $data['kW'];
-				//echo '</br>';
-				$budget = $data['Amt'];
-				//echo '</br>';
-				/*
-				echo '</br>';
-				echo 'Generation:'.$this->generation($kwH);
-				echo '</br>';
-				echo 'Transmission:'.$this->transmission($kwH);
-				echo '</br>';
-				echo 'System Loss:'.$this->systemLoss($kwH);
-				echo '</br>';
-				echo 'Distribution:'.$this->distribution($kwH);
-				echo '</br>';
-				echo 'Subsidies:'.$this->subsidies($kwH);
-				echo '</br>';
-				echo 'universal:'.$this->universal($kwH);
-				exit;
-				*/
+				// end 
 				
+				// Users Data 
+				$kwH = $data['kW'];
+				$budget = $data['Amt'];
+		
 				// Normal Energy Bill
 				$data['monthlyBill'] = $this->getBillQuote($kwH);
 				$data['dailykwH'] = $kwH/30;
 				$data['Emission'] = $kwH*12;
 				
 				// With Solar Panel Bill
-				$data['monthlySolarBill'] = $this->getSolarQuote($kwH,$budget);
-				/*
-				$kw = $this->energySolar('kW',$budget);
-				echo 'Solar kW:'.$kw;
-				echo '</br>';
-				echo $monthlySolarBill = $data['monthlyBill'] - ($kw * 1885.325);
-				echo '<br/>';
-				echo 'Monthly Solar Bill: '.$monthlySolarBill;
-				echo '</br>';
-				*/
-				$data['dailySolar'] = $this->energySolar('dailykWh',$budget);
-				//exit;
-				$data['monthlySolar'] = $this->energySolar('monthlykWh',$budget);
+				$data['monthlySolarBill'] = $this->getSolarQuote('monthlySavings',$kwH,$budget);
+				$data['dailySolar'] = $this->getSolarQuote('daily',$kwH,$budget);
+				$data['monthlySolar'] = $this->getSolarQuote('monthly',$kwH,$budget);
+				$data['monthlyEsave'] = $this->getSolarQuote('monthlyEsave',$kwH,$budget);
+				$data['monthlySavings'] = $this->getSolarQuote('monthlySavings',$kwH,$budget);
+				$data['solarMonthlybills'] = $this->getSolarQuote('solarMonthlybills',$kwH,$budget);
+				$data['averageMonthlysavings'] = $this->getSolarQuote('averageMonthlysavings',$kwH,$budget);
 				$data['emissionSolar'] =  $data['Emission'] - ($data['Emission'] - (($kwH - $data['monthlySolar']) * 12));
 				
-				// Average savings if you use solar panel
+				// Compute how much you can save if you use solar panel
 				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
+				
+				// Compute equivalent no. of trees based on the Co2
 				$data['trees'] =  ($data['Emission'] - $data['emissionSolar']) / 48;
 				
+				// Data for Monthly Chart  solar bills savings for 12 months of start using solar panel
+				$data['monthlyChart'] = $this->getSolarQuote('monthlyChart',$data['monthlySolarBill']);
+				
+				// Savings per month
+				$data['monthlySavings'] = round($data['monthlySolarBill'] / 12,2);
+			
 				// Load View
 				$this->load->view('header.php',$data);
 				$this->load->view('content/main_view.php',$data);
@@ -121,36 +104,57 @@
 		// Get Total Computations (Solar)
 		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		//===========================
-		public function getSolarQuote($kwH=NULL,$budget=NULL){
-			$solarkWh = $this->energySolar('kW',$budget);
-			$monthlyBill = $this->getBillQuote($kwH);
-			return $monthlyBill - ($solarkWh * 1885.325);
-		}
-
-		public function energySolar($cat=NULL,$budget=NULL){
-			$solarkWh = array(); // data set container for kwH
-			$solarkWh['kW'] = $budget/100000;	// daily kW produces by solar panel
-			$solarkWh['dailykWh'] = $solarkWh['kW'] * 4.5;	// Daily kWh consumble energy produces by solar panel
-			$solarkWh['monthlykWh'] = $solarkWh['dailykWh'] * 30;	// Monthly kwH consumable energy produces by solar panel
+		public function getSolarQuote($cat=NULL,$kwH=NULL,$budget=NULL){
 			
+			// Data Variables
+			$monthlyBill = $this->getBillQuote($kwH);
+			$solarIsolation = array(1.09,1.24,1.5,1.73,1.51,1.03,0.93,0.95,0.93,1.01,1,1);
+			$solarMonthlybills = array();
+			$monthlySavings = array();
+			$averageMonthlysavings = 0;
+
+			// Computations for Solar
+			$kW = $budget/100000;
+			$daily = $kW * 4.5;
+			$monthly = $daily * 30;
+			$monthlyEsave = $kW * 1795.33;
+		
+			// 
+			for($i=0;$i<12;$i++){
+				$mSavings = $monthlyEsave * $solarIsolation[$i];
+				array_push($monthlySavings,$mSavings);
+				$solarMbills = $monthlyBill - $monthlySavings[$i];
+				array_push($solarMonthlybills,$solarMbills);
+				$averageMonthlysavings += $monthlySavings[$i];
+			
+			};
+			
+			//return $averageMonthlysavings;
+			// return needed category info
 			switch($cat):
 				case 'kW':
-					return $solarkWh['kW'];
-				case 'dailykWh':
-					return $solarkWh['dailykWh'];
-				case 'monthlykWh': 
-					return $solarkWh['monthlykWh'];
+					return $kW;
+				case 'daily':
+					return $daily;
+				case 'monthly':
+					return $monthly;
+				case 'monthlyEsave':
+					return $monthlyEsave;
+				case 'monthlySavings':
+					return json_encode($monthlySavings);
+				case 'solarMonthlybills':
+					return json_encode($solarMonthlybills);
+				case 'averageMonthlysavings':
+					return $averageMonthlysavings/12;
 				default:
-					return 'No Selected Category';
+					return 'No Data';
 			endswitch;
-			
-		} 
-
+		}
 		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
 			$emission = ($normalkwH - $solarkwH) * 365;
 			return $emission;
 		}
-
+		
 		//===========================
 		// General Total Computation (Meralco)
 		// return avarage energy consumption from distributor
