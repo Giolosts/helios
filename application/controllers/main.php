@@ -71,10 +71,10 @@
 		//===========================
 		public function xcode(){
 			$xcode = $this->uri->segment('3');
-			$data['xcode'] = $xcode; //
+			
 			// Check wether a bigData is generated else return generation page
 			if($xcode != ''){
-				
+				$data['xcode'] = $xcode; //
 				// Get db cache of the generated  big Data  
 				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
 				
