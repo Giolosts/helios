@@ -104,7 +104,7 @@
 				$data['yearlyRoi'] = $this->getSolarQuote('yearlyRoi',$kwH,$budget);
 				$data['years'] = $this->getSolarQuote('years',$kwH,$budget);
 				$data['months'] = $this->getSolarQuote('months',$kwH,$budget);
-				echo $data['yearsLabel'] = $this->getSolarQuote('yearsLabel',$kwH,$budget);
+				$data['yearsLabel'] = $this->getSolarQuote('yearsLabel',$kwH,$budget);
 				
 				// Compute how much you can save if you use solar panel
 				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
