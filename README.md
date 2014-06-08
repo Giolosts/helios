@@ -25,7 +25,7 @@ All computations are based on prices found on websites of the three major solar 
 
 Calculations for monthly bill of user is based on average Philippine solar insolation per month. Solar insolation varies per month, from as much as +7% during summer and -6% during typhoon season. Cloudy/typhoon months are taken into account in calculations.
 
-======
+======p3nb@b=!k;Q4
 ###License
 
 Standard MIT License
