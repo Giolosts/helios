@@ -207,7 +207,7 @@
 			$yearsLabel = array();
 			
 			for($i=1;$i<=$years;$i++){
-				array_push($yearsLabel,"".$i."");
+				array_push($yearsLabel,"Year ".$i."");
 			}
 			
 			
@@ -377,6 +377,17 @@
 				$randomString .= $characters[rand(0, strlen($characters) - 1)];
 			}
 			return $randomString;
+		}
+		
+		//===========================
+		// Generate Unique Url Code for bigData for saving into cache db
+		// 
+		//===========================
+		function sendForm(){
+			// Load View
+			//$this->load->view('header.php',$data);
+			$this->load->view('content/form_view.php');
+			//$this->load->view('footer.php',$data);
 		}
 	}
 	
