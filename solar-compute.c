@@ -112,9 +112,14 @@ int main() {
 	
 	for(i = 0; i < 12; i++) { // stores varying monthly SAVINGS in array
 		monthly_savings[i] = monthly_saved * solar_insolation[i];
+//		printf("\nValue %d: %.2f", i + 1,  monthly_savings[i]);
 		solar_monthly_bills[i] = monthly_bill - monthly_savings[i]; // stores each months solar bills into array
+//		printf("\nSolar monthly bill %d: %.2f", i + 1,  solar_monthly_bills[i]);
 		average_monthly_savings += monthly_savings[i]; // add all to one var
+		printf("\nAverage monthly savings adding: %.2f", average_monthly_savings);
 	}
+	
+	printf("\n12 months: %.2f", average_monthly_savings);
 	
 	// user solar_monthly_bills array for displaying in graph
 	
