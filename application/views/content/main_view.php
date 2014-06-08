@@ -152,13 +152,13 @@
 		<div class="interested">
 			<h4>Interested in converting your home to Solar? Order Solar panels from these local distributors: </h3>
 			<div class="distributor">
-				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor1.png" alt="Solar distributor 1" class="img-responsive"></a>
+				<a href="<?=base_url();?>index.php/main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor1.png" alt="Solar distributor 1" class="img-responsive"></a>
 			</div>
 			<div class="distributor">
-				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor2.png" alt="Solar distributor 2" class="img-responsive"></a>
+				<a href="<?=base_url();?>index.php/main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor2.png" alt="Solar distributor 2" class="img-responsive"></a>
 			</div>
 			<div class="distributor">
-				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor3.png" alt="Solar distributor 3" class="img-responsive"></a>
+				<a href="<?=base_url();?>index.php/main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor3.png" alt="Solar distributor 3" class="img-responsive"></a>
 			</div>
 		</div>
 	</div>
