@@ -100,13 +100,24 @@
 			<div class="legend">
 				<img src="<?=base_url();?>/assets/img/gray.png" alt="orange">
 			</div>
-			<h6>Average monthly electric bills after solar installation: <strong><?php print_r($monthlySolarBill); ?></strong>.</h6>
-			<div class="clearfix"></div>
-			<div class="legend">
-				<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
-			</div>
-			<h6>Projected monthly bills with solar installation</h6>
-			<div class="clearfix"></div>
+			<?php if($monthlySolarBill > 0) { ?>
+				<h6>Average monthly electric bills after solar installation: <strong><?php print_r($monthlySolarBill); ?></strong>.</h6>
+				<div class="clearfix"></div>
+				<div class="legend">
+					<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
+				</div>
+				<h6>Projected monthly bills with solar installation</h6>
+				<div class="clearfix"></div>
+			<?php } else { ?>
+				<h6>Average monthly electricity credit from Meralco: <strong><?php print_r($monthlySolarBill * -1); ?></strong>.</h6>
+				<div class="clearfix"></div>
+				<div class="legend">
+					<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
+				</div>
+				<h6>Projected monthly electricity credit from Meralco</h6>
+				<div class="clearfix"></div>
+				<div class="legend"></div><h6>Want to find out how the Meralco's Net Metering for electricity credit works? Click <a href="#">here.</a></h6>
+			<?php } ?>
 		</div>
 		<div class="chart">
 			<h5>Within <strong><?php print_r($years); ?> years<?php if($months > 0) { ?> and <?php print_r($months); ?> months<?php } ?></strong>, your investment will have paid for itself and 
@@ -134,20 +145,20 @@
 			<div class="legend">
 				<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
 			</div>
-			<h6>Projected average CO2 emissions after solar installation: <strong><?php print_r($emissionSolar); ?> pounds of CO2 per year</strong></h6>
+			<h6>Projected average CO2 emissions after solar installation: <strong><?php if($emissionSolar > 0) { print_r($emissionSolar); ?> pounds of CO2 per year<?php } else { echo "0";?>, Your home won't have a carbon footprint anymore!<?php } ?></strong></h6>
 			<div class="clearfix"></div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="interested">
 			<h4>Interested in converting your home to Solar? Order Solar panels from these local distributors: </h3>
 			<div class="distributor">
-				<img src="<?=base_url();?>/assets/img/distributor1.png" alt="Solar distributor 1" class="img-responsive">
+				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor1.png" alt="Solar distributor 1" class="img-responsive"></a>
 			</div>
 			<div class="distributor">
-				<img src="<?=base_url();?>/assets/img/distributor2.png" alt="Solar distributor 2" class="img-responsive">
+				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor2.png" alt="Solar distributor 2" class="img-responsive"></a>
 			</div>
 			<div class="distributor">
-				<img src="<?=base_url();?>/assets/img/distributor3.png" alt="Solar distributor 3" class="img-responsive">
+				<a href="<?=base_url();?>main/sendForm" taget="_tab"><img src="<?=base_url();?>/assets/img/distributor3.png" alt="Solar distributor 3" class="img-responsive"></a>
 			</div>
 		</div>
 	</div>

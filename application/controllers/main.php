@@ -385,9 +385,9 @@
 		//===========================
 		function sendForm(){
 			// Load View
-			//$this->load->view('header.php',$data);
+			$this->load->view('header.php');
 			$this->load->view('content/form_view.php');
-			//$this->load->view('footer.php',$data);
+			$this->load->view('footer.php');
 		}
 	}
 	
