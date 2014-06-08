@@ -92,8 +92,8 @@
 			<canvas id="myChart1" width="900" height="300"></canvas>
 		</div>
 		<div class="chart">
-			<h5>Per year, your ROI will be $ROI%.
-				Within %duration years, your investment will have paid for itself and 
+			<h5>Per year, your ROI will be <strong><?php print_r(round($Amt / $averageMonthlysavings, 0)); ?>%</strong>.</h5>
+				Within <strong><?php print_r($years); ?> years</strong>, your investment will have paid for itself and 
 				you have helped the environment along the way.<h5>
 			<canvas id="myChart2" width="900" height="300"></canvas>
 		</div>

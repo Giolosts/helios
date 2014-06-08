@@ -17,6 +17,7 @@
 	<!-- JS scripts here -->
 	<script>
 			var Months = ["January","February","March","April","May","June","July","August","September","October","Novemeber","December"]
+			var ROILabel = <?php print_r($yearsLabel); ?>
 			
 			var barChartOptions1 = {
 					//Boolean - If we show the scale above the chart data
@@ -100,14 +101,14 @@
 			}
 		
 			var lineChartData2 = {
-				labels : Months,
+				labels : ROILabel,
 				datasets : [
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [10,18,20,35,54,80,100]
+						data : <?php print_r($yearlyRoi) ?>
 					}
 				]
 				
