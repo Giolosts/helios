@@ -90,7 +90,7 @@
 				$data['Emission'] = $kwH*12;
 				
 				// With Solar Panel Bill
-				$data['monthlySolarBill'] = $this->getSolarQuote('monthlySavings',$kwH,$budget);
+				$data['monthlySolarBill'] = $this->getSolarQuote('monthlyEsave',$kwH,$budget);
 				$data['dailySolar'] = $this->getSolarQuote('daily',$kwH,$budget);
 				$data['monthlySolar'] = $this->getSolarQuote('monthly',$kwH,$budget);
 				$data['monthlyEsave'] = $this->getSolarQuote('monthlyEsave',$kwH,$budget);
@@ -120,7 +120,7 @@
 					array_push($solarE,$data['monthlySolarBill']);
 				}
 				$data['normalE'] = json_encode($normalE);
-				$data['solarE'] = json_encode($solarE);
+				$data['solarE'] =   json_encode($solarE);
 				
 				// Load View
 				$this->load->view('header.php',$data);
@@ -161,6 +161,7 @@
 			
 			};
 			
+			$monthlyEsave = $averageMonthlysavings/12;
 			// return needed category info
 			switch($cat):
 				case 'kW':
