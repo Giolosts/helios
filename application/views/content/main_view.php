@@ -89,12 +89,27 @@
 		</div>
 		<div class="chart">
 			<h5>This chart shows how much money you will save on your electricity bill per month.
-				Based on your budget, you can get <strong>PHP <?php print_r(round($monthlyEsave,2));?></strong> savings per month.<h5>
-			<h5><?php //print_r($normalE);?></h5>
+				Based on your budget, you can get <strong>PHP <?php print_r(round($monthlyEsave,2));?></strong> savings per month.</h5>
 			<canvas id="myChart1" width="900" height="300"></canvas>
+			<div class="clearfix"></div>
+			<div class="legend">
+				<img src="<?=base_url();?>/assets/img/orange.png" alt="orange">
+			</div>
+			<h6>Current average monthly electric bill average per month: <strong><?php print_r($monthlyBill); ?></strong></h6>
+			<div class="clearfix"></div>
+			<div class="legend">
+				<img src="<?=base_url();?>/assets/img/gray.png" alt="orange">
+			</div>
+			<h6>Average monthly electric bills after solar installation: <strong><?php print_r($monthlySolarBill); ?></strong>.</h6>
+			<div class="clearfix"></div>
+			<div class="legend">
+				<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
+			</div>
+			<h6>Projected monthly bills with solar installation</h6>
+			<div class="clearfix"></div>
 		</div>
 		<div class="chart">
-			<h5>Within <strong><?php print_r($years); ?> years <?php if($months > 0) { ?>and <?php print_r($months); ?> months<?php } ?>.</strong>, your investment will have paid for itself and 
+			<h5>Within <strong><?php print_r($years); ?> years<?php if($months > 0) { ?> and <?php print_r($months); ?> months<?php } ?></strong>, your investment will have paid for itself and 
 				you have helped the environment along the way.<h5>
 			<canvas id="myChart2" width="900" height="300"></canvas>
 		</div>
@@ -102,16 +117,27 @@
 			<?php if($emissionSolar > 0) { ?>
 			<h5>Your overall carbon footprint will be lowered from <strong><?php print_r($Emission);?> pounds of CO2
 			</strong> to <strong><?php print_r($emissionSolar);?> pounds of CO2</strong>,
-				equivalent to <span class="text-success"><strong><?php print_r(round($trees, 0));?></strong></span> trees being planted.<h5>
+				equivalent to <span class="text-success"><strong><?php print_r(round($trees, 0));?> trees being planted.</strong></span></h5>
 			<?php } ?>
 			<?php if($emissionSolar <= 0) { ?>
 			<h5>Upon installing solar panels, your carbon footprint from your home will be completely gone.
 				Your solar installation is equivalent to <span class="text-success"><strong><?php print_r(round($trees, 0));?></strong></span>
 				trees planted in terms of <strong>CO2 absorption</strong>. You're helping mother earth in a big way!</h5>
 			<?php } ?>
-			<?php //print_r($Emission);?>, <?php //if($emissionSolar > 0) { print_r($emissionSolar);} else {echo 0;} ?>
 			<canvas id="myChart3" width="900" height="300"></canvas>
+			<div class="clearfix"></div>
+			<div class="legend">
+				<img src="<?=base_url();?>/assets/img/orange.png" alt="orange">
+			</div>
+			<h6>Current average CO2 emissions: <strong><?php print_r($Emission); ?> pounds of CO2 per year</strong></h6>
+			<div class="clearfix"></div>
+			<div class="legend">
+				<img src="<?=base_url();?>/assets/img/blue.png" alt="orange">
+			</div>
+			<h6>Projected average CO2 emissions after solar installation: <strong><?php print_r($emissionSolar); ?> pounds of CO2 per year</strong></h6>
+			<div class="clearfix"></div>
 		</div>
+		<div class="clearfix"></div>
 		<div class="interested">
 			<h4>Interested in converting your home to Solar? Order Solar panels from these local distributors: </h3>
 			<div class="distributor">
