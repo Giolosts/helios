@@ -101,10 +101,12 @@
 				
 				
 				// ROI Charts
-				$data['yearlyRoi'] = $this->getSolarQuote('yearlyRoi',$kwH,$budget);
-				$data['years'] = $this->getSolarQuote('years',$kwH,$budget);
-				$data['months'] = $this->getSolarQuote('months',$kwH,$budget);
-	
+				echo $data['yearlyRoi'] = $this->getSolarQuote('yearlyRoi',$kwH,$budget);
+				echo '<br/>';
+				echo$data['years'] = $this->getSolarQuote('years',$kwH,$budget);
+				echo '<br/>';
+				echo $data['months'] = $this->getSolarQuote('months',$kwH,$budget);
+				
 				// Compute how much you can save if you use solar panel
 				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
 				
@@ -174,24 +176,20 @@
 			
 			//  Get Yearly ROI and Average Year of ROI
 			$yearlyROI = array();
-			$years = 0;
 			$roi = 0;
 			do{
 				if($i == 12){
 					$i = 0;
-					$years++;
+					
 					array_push($yearlyROI,$roi);
-				}
-				if($roi >= $budget){
-					break;
 				}
 				else{
 					$roi += $monthlySavings[$i];
 					$i++;
 				}
-			}while(1);
+			}while($roi < $budget);
 			$months = $i;
-			
+			$years = count($yearlyROI) - 1;
 			// return needed category info
 			switch($cat):
 				case 'kW':

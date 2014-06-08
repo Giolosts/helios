@@ -101,7 +101,7 @@ int main() {
 	
 	generated_kwh = kw * 4.5; // daily kwh usage; 1kw ~= 4.5 kwh
 		
-	printf("Average kWh  solar panels daily: %.2f", generated_kwh);
+	printf("Average kWh from solar panels daily: %.2f", generated_kwh);
 	
 	monthly_generated = generated_kwh * 30; // monthly generated kwh
 	
@@ -115,6 +115,8 @@ int main() {
 		solar_monthly_bills[i] = monthly_bill - monthly_savings[i]; // stores each months solar bills into array
 		average_monthly_savings += monthly_savings[i]; // add all to one var
 	}
+	
+	// user solar_monthly_bills array for displaying in graph
 	
 	average_monthly_savings /= 12; // get average
 	
