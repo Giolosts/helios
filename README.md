@@ -7,13 +7,15 @@ This web app lets users project a solar conversion in their home.
 - [x] Chart front-end
 - [x] Backend controllers
 - [x] Unique URL per generated quote
+- [x] Monthly bill chart/computations
+- [x] ROI graph
+- [x] Greenhouse emission graph
 - [ ] ~~Save charts/data to PDF~~
-- [ ] Share charts/data to social networks
-- [ ] Add computations for Windmill conversion
+- [x] Share charts/data to social networks
+- [ ] ~~Add computations for Windmill conversion~~
 - [x] Varying solar insolation (6 months sunny, 6 months cloudy/rain)
-- [ ] Tidy code for code review
-- [ ] Upload to live server
-- [ ]
+- [x] Tidy code for code review
+- [ ] ~~Upload to live server~~
 
 Made with PHP/CI & HTML5, CSS, and JS.
 
