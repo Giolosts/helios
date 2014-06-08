@@ -2,13 +2,20 @@
 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 	class Main extends CI_Controller{
-
+		
+		//===========================
+		// Assets Loader
+		//===========================
 		public function Main(){
 			parent::__construct();
 
 			$this->load->helper('url');
 
 		}
+		
+		//===========================
+		// Save data to be generated
+		// return avegery enery consumption less than solar energy producs (if using solar panels)
 		public function index()
 		{
 			// Data Variables
@@ -22,27 +29,41 @@
 			$this->load->view('footer.php',$data);
 		}
 		
+		//===========================
+		// Save data to be generated
+		// return avegery enery consumption less than solar energy producs (if using solar panels)
+		//===========================
 		public function generate($kwH = NULL,$budget = NULL){
+			
+			// POST Data Variables
 			$kW = isset($_POST['kW'])? $_POST['kW'] : '';
 			$Amt = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
 			
+			// Unique url(xcode generator)
+			// has database checking
 			do{
 				$xcode = $this->generateRandomString();
 				$cData = $this->db->where('xcode',$xcode)->count_all_results('cache');
 			}while($cData > 0);
 			
+			
+			// Unique Xcode for data being evaluated
 			$data = array(
 			   'xcode' => $xcode ,
 			   'kwH' => $kW ,
 			   'budget' => $Amt
 			);
-
+			
+			// Push Data into database
 			$this->db->insert('cache', $data); 
 			
+			// redirect to generated url code to view data
 			header('Location:xcode/'.$xcode);
 		}
 		
-				
+		//===========================
+		// Unique Url xcodes for bigData
+		//===========================
 		public function xcode(){
 			$xcode = $this->uri->segment('3');
 			
@@ -59,7 +80,7 @@
 				}
 				// end 
 				
-				// Users Data 
+				// Data pulled from db by unique xcodes 
 				$kwH = $data['kW'];
 				$budget = $data['Amt'];
 		
@@ -89,7 +110,18 @@
 				
 				// Savings per month
 				$data['monthlySavings'] = round($data['monthlySolarBill'] / 12,2);
-			
+				
+				// return data from script data labels on view side
+				$normalE = array();
+				$solarE	= array();
+				
+				for($i=0;$i<12;$i++){
+					array_push($data['normalE'],$data['monthlyBill']);
+					array_push($data['solarE'],$data['monthlySolarBill']);
+				}
+				$data['normalE'] = json_encode($normalE);
+				$data['solarE'] = json_encode($solarE);
+				
 				// Load View
 				$this->load->view('header.php',$data);
 				$this->load->view('content/main_view.php',$data);
@@ -119,7 +151,7 @@
 			$monthly = $daily * 30;
 			$monthlyEsave = $kW * 1795.33;
 		
-			// 
+			// Get Monthly savings, Solar Monthly bills, Average Monthly bill
 			for($i=0;$i<12;$i++){
 				$mSavings = $monthlyEsave * $solarIsolation[$i];
 				array_push($monthlySavings,$mSavings);
@@ -129,7 +161,6 @@
 			
 			};
 			
-			//return $averageMonthlysavings;
 			// return needed category info
 			switch($cat):
 				case 'kW':
@@ -150,6 +181,10 @@
 					return 'No Data';
 			endswitch;
 		}
+		
+		//===========================
+		// Solar Co2 Emission
+		// return co2 emission produce using solar panel
 		public function CO2Emission($normalkwH=NULL,$solarkwH=NULL){
 			$emission = ($normalkwH - $solarkwH) * 365;
 			return $emission;
@@ -270,6 +305,11 @@
 			return $uniAmt;
 		}
 		
+		
+		//===========================
+		// Generate Unique Url Code for bigData for saving into cache db
+		// 
+		//===========================
 		function generateRandomString($length = 5) {
 			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$randomString = '';
