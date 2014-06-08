@@ -116,8 +116,8 @@
 				$solarE	= array();
 				
 				for($i=0;$i<12;$i++){
-					array_push($data['normalE'],$data['monthlyBill']);
-					array_push($data['solarE'],$data['monthlySolarBill']);
+					array_push($normalE,$data['monthlyBill']);
+					array_push($solarE,$data['monthlySolarBill']);
 				}
 				$data['normalE'] = json_encode($normalE);
 				$data['solarE'] = json_encode($solarE);

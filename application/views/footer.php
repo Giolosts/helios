@@ -79,27 +79,21 @@
 						strokeColor : "rgba(220,220,220,1)",
 						pointColor : "rgba(220,220,220,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
-								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
-								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,
-								<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,<?php print_r($monthlyBill);?>,]
+						data : [<?php print_r($normalE);?>]
 					},
 					{
 						fillColor : "rgba(151,187,205,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [3902.62,3393.58,2799.71,2460.35,2799.71,4114.72,4538.92,4496.50,4538.92,4157.14,4241.98,4241.98]
+						data : [<?php print_r($solarMonthlybills) ?>]
 					},
 					{
 						fillColor : "rgba(190,190,190,0.5)",
 						strokeColor : "rgba(151,187,205,1)",
 						pointColor : "rgba(151,187,205,1)",
 						pointStrokeColor : "#fff",
-						data : [<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
-								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
-								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,
-								<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,<?php print_r($monthlySolarBill);?>,]
+						data : [<?php print_r($solarE);?>]
 					}
 				]
 				
