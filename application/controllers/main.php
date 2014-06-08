@@ -74,7 +74,7 @@
 			
 			// Check wether a bigData is generated else return generation page
 			if($xcode != ''){
-				$data['xcode'] = $xcode; //
+				$data['URL'] = $xcode; //
 				// Get db cache of the generated  big Data  
 				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
 				
