@@ -83,7 +83,7 @@
 				// Data pulled from db by unique xcodes 
 				$kwH = $data['kW'];
 				$budget = $data['Amt'];
-		
+				
 				// Normal Energy Bill
 				$data['monthlyBill'] = $this->getBillQuote($kwH);
 				$data['dailykwH'] = $kwH/30;
