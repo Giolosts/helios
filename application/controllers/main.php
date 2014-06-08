@@ -39,26 +39,31 @@
 			$kW = isset($_POST['kW'])? $_POST['kW'] : '';
 			$Amt = isset($_POST['Amt']) ? $_POST['Amt'] : '' ;
 			
-			// Unique url(xcode generator)
-			// has database checking
-			do{
-				$xcode = $this->generateRandomString();
-				$cData = $this->db->where('xcode',$xcode)->count_all_results('cache');
-			}while($cData > 0);
-			
-			
-			// Unique Xcode for data being evaluated
-			$data = array(
-			   'xcode' => $xcode ,
-			   'kwH' => $kW ,
-			   'budget' => $Amt
-			);
-			
-			// Push Data into database
-			$this->db->insert('cache', $data); 
-			
-			// redirect to generated url code to view data
-			header('Location:xcode/'.$xcode);
+			if($kW > 50 && $Amt > 50000){
+				// Unique url(xcode generator)
+				// has database checking
+				do{
+					$xcode = $this->generateRandomString();
+					$cData = $this->db->where('xcode',$xcode)->count_all_results('cache');
+				}while($cData > 0);
+				
+				
+				// Unique Xcode for data being evaluated
+				$data = array(
+				   'xcode' => $xcode ,
+				   'kwH' => $kW ,
+				   'budget' => $Amt
+				);
+				
+				// Push Data into database
+				$this->db->insert('cache', $data); 
+				
+				// redirect to generated url code to view data
+				header('Location:xcode/'.$xcode);
+			}
+			else{
+				header('Location:'.base_url().'/index.php/main');
+			}
 		}
 		
 		//===========================
@@ -300,7 +305,7 @@
 
 		//===========================
 		// Compute SystemLoss Charges
-		//===========================
+		//================x===========
 		public function systemLoss($kwH = NULL){
 			//$kwH = 100; // Test Data
 			$sysCharge = array(0.6062); // Fix SystemLoss charge rates
