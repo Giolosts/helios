@@ -104,6 +104,7 @@
 				$data['yearlyRoi'] = $this->getSolarQuote('yearlyRoi',$kwH,$budget);
 				$data['years'] = $this->getSolarQuote('years',$kwH,$budget);
 				$data['months'] = $this->getSolarQuote('months',$kwH,$budget);
+				echo $data['yearsLabel'] = $this->getSolarQuote('yearsLabel',$kwH,$budget);
 				
 				// Compute how much you can save if you use solar panel
 				$data['saveEnergy'] = $data['monthlyBill'] - $data['monthlySolarBill'];
@@ -171,26 +172,40 @@
 			$monthlSolarbill = $monthlyBill - ($averageMonthlysavings/12);
 			$monthlyEsave = $averageMonthlysavings/12;
 			
-			
-			//  Get Yearly ROI and Average Year of ROI
-			
 			$yearlyROI = array();
 			$roi = 0;
-			$i = 0;
-			while($roi < $budget){
-				if($i == 12){
-					$i = 0;
-					
-					array_push($yearlyROI,$roi);
-				}
-				else {
-					$roi += $monthlySavings[$i];	
-				}
-				$i = $i +1;
+			$avSolarMonthlybills = 0;
+			for($i=0;$i<12;$i++){
+				$avSolarMonthlybills += $solarMonthlybills[$i];
 			}
-
-			$months = $i;
-			$years = count($yearlyROI) - 1;
+			$avSolarMonthlybills = $avSolarMonthlybills / 12;
+			while($roi < $budget){
+				$months = 0;
+				for($i=0;$i<12;$i++){
+					if($roi >= $budget){
+						break;
+					}
+					if($avSolarMonthlybills < 0){
+						$roi += $monthlySavings[$i] + ($solarMonthlybills[$i] * -1);
+						$months += 1;
+					}
+					else{
+						$roi += $monthlySavings[$i];
+					}
+				}
+				array_push($yearlyROI,$roi);
+			}
+			
+			
+			// Get no of years to return back ROI
+			$years = count($yearlyROI);
+			$yearsLabel = array();
+			
+			for($i=1;$i<=$years;$i++){
+				array_push($yearsLabel,$i);
+			}
+			
+			
 			// return needed category info
 			switch($cat):
 				case 'kW':
@@ -215,6 +230,8 @@
 					return $months;
 				case 'yearlyRoi':
 					return json_encode($yearlyROI);
+				case 'yearsLabel':
+					return json_encode($yearsLabel);
 				default:
 					return 'No Data';
 			endswitch;
