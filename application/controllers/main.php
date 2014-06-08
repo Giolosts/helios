@@ -74,7 +74,7 @@
 			
 			// Check wether a bigData is generated else return generation page
 			if($xcode != ''){
-				$data['URL'] = $xcode; //
+				
 				// Get db cache of the generated  big Data  
 				$data = $this->db->get_where('cache', array('xcode' => $xcode))->result();
 				
@@ -135,6 +135,7 @@
 				$data['solarE'] =   json_encode($solarE);
 				
 				// Load View
+				$data['xcode'] = $xcode; //
 				$this->load->view('header.php',$data);
 				$this->load->view('content/main_view.php',$data);
 				$this->load->view('footer.php',$data);
