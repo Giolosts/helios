@@ -25,6 +25,16 @@ nav h5 {
 	margin-left:10px;
 }
 
+nav .share {
+	height:40px;
+	float:right;
+	width:auto;
+	margin:0;
+	padding:0;
+	top: -21px;
+	position: relative;
+}
+
 #logo {
 	width:100px;
 	height:40px;
@@ -81,7 +91,7 @@ nav h5 {
 	height:10px;
 }
 .header-text {
-	width:73%;
+	width:72%;
 	height:auto;
 	margin:auto;	
 }
@@ -97,6 +107,8 @@ nav h5 {
 
 .info {
 	text-align: center;
+	width:90%;
+	margin:auto;
 }
 
 .info .clear {

@@ -1,26 +1,19 @@
-<a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-size="large" data-count="none">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<div id="fb-root"></div>
-<br/>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="100" data-type="button"></div>
 	<!-- home -->
 	<?php if(empty($kW && $Amt)){ ?>
 	<div class="container-fluid">
     	<nav>
     		<h5>Helios</h5>
+    		<div class="share">
+				<div class="fb-share-button" data-href="<?=base_url();?>/index.php/main/content" data-width="100" data-type="button"></div>
+			</div>
+			
     	</nav>
 		<div id="header">
 			<div class="header-text">
 				<h1>Convert your home to Solar.</h1>
-				<p>Compute how much you'll save if you convert your home to renewable energy.</p>
+				<p>Always wanted to know if it's worth it to invest in solar power?<br>
+					Compute how much money you'll save if you convert your home to renewable energy.<br>
+				</p>
 			</div>
 			<form class="form-horizontal" role="form" method="POSt" action='<?=base_url();?>index.php/main/generate'>
 				<div class="clear"></div>
